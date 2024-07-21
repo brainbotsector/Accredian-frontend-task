@@ -1,9 +1,12 @@
-import React from 'react';
+import React , { useContext } from 'react';
 import SchoolIcon from '@mui/icons-material/School';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
+import { ThemeContext } from './ThemeContext';
 import './Navbar3.css';
 
 const Navbar3 = () => {
+  const { theme } = useContext(ThemeContext);
+
   const data = [
     { program: "Professional Certificate Program in Product Management", referrerBonus: "₹ 7,000", refereeBonus: "₹ 9,000" },
     { program: "PG Certificate Program in Strategic Product Management", referrerBonus: "₹ 9,000", refereeBonus: "₹ 11,000" },
@@ -15,21 +18,27 @@ const Navbar3 = () => {
   ];
 
   return (
-    <div>
+    <div style={{ background: theme.background, color: theme.color }}>
       <div className="table-container">
-        <table className="styled-table">
+        <div className="enrolled-indicator">
+          <div className="enrolled-text" style={{ color: theme.color }}>Enrolled</div>
+          <div className="enrolled-icon" style={{ color: theme.color }}>
+            <div className="enrolled-ellipse" style={{ background: theme.color }}></div>
+          </div>
+        </div>
+        <table className="styled-table" style={{ background: theme.background, color: theme.color }}>
           <thead>
             <tr>
-              <th>Programs</th>
-              <th>Referrer Bonus</th>
-              <th>Referee Bonus</th>
+              <th style={{ color: theme.color }}>Programs</th>
+              <th style={{ color: theme.color }}>Referrer Bonus</th>
+              <th style={{ color: theme.color }}>Referee Bonus</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item, index) => (
-              <tr key={index}>
+              <tr key={index} style={{ background: theme.background, color: theme.color }}>
                 <td>
-                  <SchoolIcon className="icon" />
+                  <SchoolIcon className="icon" style={{ color: theme.color }} />
                   {item.program}
                 </td>
                 <td>{item.referrerBonus}</td>
@@ -38,32 +47,40 @@ const Navbar3 = () => {
             ))}
           </tbody>
         </table>
-      </div>
+        <div className="show-more-container">
+          <button className="show-more-button" style={{ background: theme.background, color: theme.color }}>Show More</button>
+        </div>
+        <div className="refernow-container">
+          <button className="refernow-button">Refer Now</button>
+        </div>
+      
 
-      <div className="faq-section">
-        <div className="faq-title">Frequently Asked Questions</div>
-        <div className="faq-item">
+      
+
+      <div className="faq-section"  >
+        <div className="faq-title" style = {{color : theme.color}}>Frequently Asked Questions</div>
+        <div className="faq-item" style={{ background: theme.background, color: theme.color }}> 
           <div className="faq-heading">Eligibility</div>
-          <div className="faq-content">
+          <div className="faq-content" style={{ background: theme.background, color: theme.color }}>
             <p>
               <span>Do I need to have prior Product Management and Project Management experience to enroll in the program?</span>
             </p>
           </div>
         </div>
-        <div className="faq-item">
+        <div className="faq-item" style={{ background: theme.background, color: theme.color }}>
           <div className="faq-heading">How to use?</div>
-          <div className="faq-content">
+          <div className="faq-content" style={{ background: theme.background, color: theme.color }}>
             <p>No, the program is designed to be inclusive of all levels of experience. All topics will be covered from the basics, making it suitable for individuals from any field of work.</p>
           </div>
         </div>
-        <div className="faq-item">
+        <div className="faq-item" style={{ background: theme.background, color: theme.color }}>
           <div className="faq-heading">Terms & Conditions</div>
-          <div className="faq-content">
+          <div className="faq-content" style={{ background: theme.background, color: theme.color }}>
             <p>What is the minimum system configuration required?</p>
           </div>
         </div>
       </div>
-
+      </div>
       <div className="cta-grad">
         <div className="cta-circle"></div>
         
@@ -128,7 +145,7 @@ const Navbar3 = () => {
     © 2024 Accredian - A Brand of FullStack Education Pvt Ltd. All Rights Reserved.
   </div>
   </footer>
-    </div>
+  </div>
   );
 };
 
