@@ -1,24 +1,21 @@
-import { AccountCircle, Note, Wallet } from '@mui/icons-material';
-import { AppBar, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Toolbar, Typography } from '@mui/material';
+import { AccountCircle, Brightness4, Brightness7, Note, Wallet } from '@mui/icons-material';
+import { AppBar, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField, Toolbar, Typography } from '@mui/material';
 import axios from 'axios';
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import * as Yup from 'yup';
-import AnniversaryImage from './Image1.png'; 
+import AnniversaryImage from './Image1.png';
 import Navbar3 from './Navbar3';
-
+import { ThemeContext } from './ThemeContext';
 const ReferEarn = () => {
   const [open, setOpen] = useState(false);
-
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
-  
   const formik = useFormik({
     initialValues: {
       referrerName: '',
@@ -43,25 +40,24 @@ const ReferEarn = () => {
         });
     },
   });
-
   return (
-    <div>
+    <div style={{ background: theme.background, color: theme.color }}>
       <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h6" component="div" style={{ paddingRight: '1400px' }} sx={{ flexGrow: 1 }}>
-            <strong style={{ fontSize: '35px' }}>accredian</strong>
-            
+          <Typography variant="h6" component="div" style={{ paddingRight: '1300px' }} sx={{ flexGrow: 1 }}>
+            <strong style={{ fontSize: '35px' }}>accredian</strong> 
           </Typography>
           <Button color="inherit">Login</Button>
           <Button color="inherit">About Us</Button>
           <Button color="inherit" onClick={handleClickOpen}>Refer & Earn</Button>
+          <IconButton edge="end" color="inherit" aria-label="mode" onClick={toggleTheme}>
+            {theme.background === '#fff' ? <Brightness4 /> : <Brightness7 />}
+          </IconButton>
         </Toolbar>
       </AppBar>
-
       <Toolbar />
       <div>
-    
-      <div
+      <div 
         className="group-22081"
         style={{
           position: 'absolute',
@@ -69,10 +65,9 @@ const ReferEarn = () => {
           height: '63px',
           left: 'calc(50% - 797px/2 - 0.5px)',
           top: '10px',
+          background: theme.background,
         }}
       />
-
-     
       <div
         className="rectangle-10"
         style={{
@@ -83,9 +78,9 @@ const ReferEarn = () => {
           top: '136px',
           background: 'rgba(26, 115, 232, 0.11)',
           borderRadius: '38px',
+          
         }}
       />
-
       <div
         className="benefits"
         style={{
@@ -102,12 +97,11 @@ const ReferEarn = () => {
           display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
-          color: '#4B4B4B',
+          color: theme.color,
         }}
       >
         Benefits
       </div>
-
       <div
         className="faqs"
         style={{
@@ -124,13 +118,11 @@ const ReferEarn = () => {
           display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
-          color: '#4B4B4B',
+          color: theme.color,
         }}
       >
         FAQs
       </div>
-
-  
       <div
         className="support"
         style={{
@@ -147,13 +139,11 @@ const ReferEarn = () => {
           display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
-          color: '#4B4B4B',
+          color: theme.color,
         }}
       >
         Support
       </div>
-
-
       <div
         className="group-22080"
         style={{
@@ -164,7 +154,6 @@ const ReferEarn = () => {
           top: '193px',
         }}
       />
-
       <div
         className="refer"
         style={{
@@ -183,10 +172,7 @@ const ReferEarn = () => {
           textAlign: 'center',
           color: '#1A73E8',
         }}
-      >
-        Refer
-      </div>
-
+      >Refer</div>
       <div
         className="ellipse-1"
         style={{
@@ -200,42 +186,35 @@ const ReferEarn = () => {
         }}
       />
     </div>
-      
-    
-      <div style={{ position: 'absolute', width: '1360px', height: '692px', left: '280px', top: '269px', background: '#EEF5FF', boxShadow: '0px 4px 65px 1px rgba(0, 7, 43, 0.21)', borderRadius: '29px', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', width: '502px', height: '190px', left: '100px', top: '250px', fontFamily: 'Roboto', fontStyle: 'normal', fontWeight: '700', fontSize: '88px', lineHeight: '88px', display: 'flex', alignItems: 'center', color: '#1A202C' }}>
+      <div style={{ position: 'absolute', width: '1260px', height: '692px', left: '280px', top: '269px', background: theme.background, boxShadow: '0px 10px 75px 5px rgba(0, 7, 43, 0.21)', borderRadius: '29px', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', width: '502px', height: '190px', left: '100px', top: '250px', fontFamily: 'Roboto', fontStyle: 'normal', fontWeight: '700', fontSize: '88px', lineHeight: '88px', display: 'flex', alignItems: 'center', color: theme.color }}>
           Let’s Learn & Earn
         </div>
-        <div style={{ position: 'absolute', width: '415px', height: '140px', left: '125px', top: '423px', fontFamily: 'Roboto', fontStyle: 'normal', fontWeight: '400', fontSize: '40px', lineHeight: '65px', display: 'flex', alignItems: 'center', color: '#1A202C' }}>
+        <div style={{ position: 'absolute', width: '415px', height: '140px', left: '125px', top: '423px', fontFamily: 'Roboto', fontStyle: 'normal', fontWeight: '400', fontSize: '40px', lineHeight: '65px', display: 'flex', alignItems: 'center', color: theme.color }}>
           Get a chance to win up-to Rs. 15,000
         </div>
         <Button variant="contained" color="primary" style={{ position: 'absolute', width: '192px', height: '54px', left: '225px', top: '620px', borderRadius: '8px', background: '#1A73E8' }} onClick={handleClickOpen}>
           Refer Now
         </Button>
-        
-     
         <img src={AnniversaryImage} alt="Anniversary Image" style={{ position: 'absolute', width: '800px', height: '700px', left: '600px', top: '0px' }} />
       </div>
+                        
 
-   
-      <div style={{ display: 'flex', border: '2px solid black', margin: '50px auto', width: '1300px', height: '300px', marginTop: '1000px' }}>
-        <div style={{ flex: 1, margin: '15px', padding: '40px', border: '2px solid #ccc', borderRadius: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <AccountCircle style={{ fontSize: '80px', color: '#1A73E8', marginBottom: '10px' }} />
-          <p style={{ textAlign: 'center', fontSize: '16px', color: '#1A202C' }}>Submit referrals easily via our website’s referral section.</p>
-        </div>
-        <div style={{ flex: 1, margin: '15px', padding: '40px', border: '2px solid #ccc', borderRadius: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <Note style={{ fontSize: '80px', color: '#1A73E8', marginBottom: '10px' }} />
-          <p style={{ textAlign: 'center', fontSize: '16px', color: '#1A202C' }}>Earn rewards once your referral joins an Accredian program.</p>
-        </div>
-        <div style={{ flex: 1, margin: '15px', padding: '40px', border: '2px solid #ccc', borderRadius: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <Wallet style={{ fontSize: '80px', color: '#1A73E8', marginBottom: '10px' }} />
-          <p style={{ textAlign: 'center', fontSize: '16px', color: '#1A202C' }}>Both parties receive a bonus 30 days after program enrollment.</p>
-        </div>
+      <div style={{ display: 'flex', border: '0px solid black', margin: '50px auto', width: '1300px', height: '300px', marginTop: '1000px', marginBottom: '150px' }}>
+      <div style={{ flex: 1, margin: '15px', padding: '40px', border: '2px solid #ccc', width: '90px', height: '270px', borderRadius: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', transition: 'transform 0.5s ease, box-shadow 0.5s ease', cursor: 'pointer', backgroundColor: theme.background, color: theme.color }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-40px)'; e.currentTarget.style.boxShadow = '0px 15px 15px rgb(122, 163, 218)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+        <AccountCircle style={{ fontSize: '80px', color: '#1A73E8', marginBottom: '10px' }} />
+        <p style={{ textAlign: 'center', fontSize: '16px', color: theme.color }}>Submit referrals easily via our website’s referral section.</p>
       </div>
+      <div style={{ flex: 1, margin: '15px', padding: '40px', border: '2px solid #ccc', width: '90px', height: '270px', borderRadius: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', transition: 'transform 0.3s ease, box-shadow 0.3s ease', cursor: 'pointer', backgroundColor: theme.background, color: theme.color }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-40px)'; e.currentTarget.style.boxShadow = '0px 15px 15px rgb(122, 163, 218)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+        <Note style={{ fontSize: '80px', color: '#1A73E8', marginBottom: '10px' }} />
+        <p style={{ textAlign: 'center', fontSize: '16px', color: theme.color }}>Earn rewards once your referral joins an Accredian program.</p>
+      </div>
+      <div style={{ flex: 1, margin: '15px', padding: '40px', border: '2px solid #ccc', width: '90px', height: '270px', borderRadius: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', transition: 'transform 0.3s ease, box-shadow 0.3s ease', cursor: 'pointer', backgroundColor: theme.background, color: theme.color }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-40px)'; e.currentTarget.style.boxShadow = '0px 15px 15px rgb(122, 163, 218)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+        <Wallet style={{ fontSize: '80px', color: '#1A73E8', marginBottom: '10px' }} />
+        <p style={{ textAlign: 'center', fontSize: '16px', color: theme.color }}>Both parties receive a bonus 30 days after program enrollment.</p>
+      </div>
+      </div>  
       <Navbar3/>
-
-
-      
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Refer a Friend</DialogTitle>
         <DialogContent>
@@ -299,11 +278,9 @@ const ReferEarn = () => {
           </form>
         </DialogContent>
       </Dialog>
-      
     </div>
   );
 };
-
 export default ReferEarn;
 
 
